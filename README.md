@@ -30,7 +30,7 @@ spring:
     url:  jdbc:mysql://localhost:3306/community?serverTimezone=Asia/Shanghai
 spring.flyway:
   baselineOnMigrate: true
-  locations: db/migration
+  locations: db/migration //这个加上不知道为啥会报错建议不加默认路径也是这里
 ```
 flyway的一些配置：
 ```
@@ -59,4 +59,20 @@ flyway.target迁移时使用的目标版本，默认为latest version
 flyway.url迁移时使用的JDBC URL，如果没有指定的话，将使用配置的主数据源
 flyway.user迁移数据库的用户名
 flyway.validate-on-migrate迁移时是否校验，默认为true.
+```
+pom文件需要添加的
+```xml
+        <dependency>
+            <groupId>org.flywaydb</groupId>
+            <artifactId>flyway-core</artifactId>
+        </dependency>
+        <plugin>
+        <groupId>org.flywaydb</groupId>
+         <artifactId>flyway-maven-plugin</artifactId>
+          <configuration>
+              <url>jdbc:mysql://localhost:3306/community?serverTimezone=Asia/Shanghai</url>
+              <user></user>
+              <password></password>
+           </configuration>
+         </plugin>
 ```
