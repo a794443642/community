@@ -71,9 +71,9 @@
                     <textarea name="tag" id="tag" class="form-control" placeholder="输入标签以,分割" th:value="${tag}"></textarea>
                 </div>
                 <div class="row">
-                    <div th:if="${error!=null}"><div class="alert alert-danger col-lg-9 .col-md-12 .col-sm-12 .col-xs-12" th:text="${error}"></div></div>
-                    <div class="col-lg-3 .col-md-12 .col-sm-12 .col-xs-12">
-                        <button type="submit" class="btn btn-success btn-publish ">提交</button>
+                    <div class="col-lg-9 .col-md-12 .col-sm-12 .col-xs-12"><div class="alert alert-danger col-lg-12 .col-md-12 .col-sm-12 .col-xs-12" th:if="${error!=null}" th:text="${error}"></div></div>
+                    <div class="col-lg-3 .col-md-12 .col-sm-12 .col-xs-12" style="text-align: right;">
+                        <button type="submit" class="btn btn-success btn-publish">提交</button>
                     </div>
                 </div>
             </form>
