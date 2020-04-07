@@ -7,6 +7,15 @@ public class User {
     private String token;
     private long gmt_creat;
     private long gmt_modified;
+    private String avtar_url;
+
+    public String getAvtar_url() {
+        return avtar_url;
+    }
+
+    public void setAvtar_url(String avtar_url) {
+        this.avtar_url = avtar_url;
+    }
 
     public Integer getId() {
         return id;

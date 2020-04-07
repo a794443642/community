@@ -1,0 +1,13 @@
+create table quesetion
+(
+    id           int auto_increment primary key,
+    title        varchar(50)   null,
+    description  text          null,
+    gmt_create   bigint        null,
+    gmt_modified bigint        null,
+    creator      int           null,
+    comment_cout int default 0 null,
+    reader_count int default 0 null,
+    like_count   int default 0 null,
+    tags         varchar(256)  null
+);

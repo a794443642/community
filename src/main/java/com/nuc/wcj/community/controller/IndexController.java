@@ -1,5 +1,8 @@
 package com.nuc.wcj.community.controller;
 
+import com.nuc.wcj.community.dto.QuestionDto;
+import com.nuc.wcj.community.mapper.Question1Mapper;
+import com.nuc.wcj.community.mapper.QuestionMapper;
 import com.nuc.wcj.community.mapper.UserMapper;
 import com.nuc.wcj.community.model.User;
 import com.nuc.wcj.community.provider.GithubProvider;
@@ -11,25 +14,32 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
+import java.util.List;
 
 @Controller
 public class IndexController {
     @Autowired
     UserMapper userMapper;
+    @Autowired
+    Question1Mapper question1Mapper;
     @GetMapping("/")
-    public String index(HttpServletRequest request){
+    public String index(HttpServletRequest request,Model model){
+
         Cookie[] cookies=request.getCookies();
-        for (Cookie cookie : cookies) {
-            if("token".equals(cookie.getName())){
-                String token=cookie.getValue();
-                User user=userMapper.findByToken(token);
-                if (user!=null){
-                    request.getSession().setAttribute("user",user);
+        if (cookies!=null) {
+            for (Cookie cookie : cookies) {
+                if ("token".equals(cookie.getName())) {
+                    String token = cookie.getValue();
+                    User user = userMapper.findByToken(token);
+                    if (user != null) {
+                        request.getSession().setAttribute("user", user);
+                    }
+                    break;
                 }
-                break;
             }
         }
-
+        List<QuestionDto> questionDtos = question1Mapper.findall();
+        model.addAttribute("questions",questionDtos);
         return "index";
     }
 }

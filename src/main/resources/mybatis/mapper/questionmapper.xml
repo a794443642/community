@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.nuc.wcj.community.mapper.Question1Mapper">
+    <resultMap id="questiondto" type="com.nuc.wcj.community.dto.QuestionDto">
+        <id column="id" property="id"/>
+        <result column="title" property="title"/>
+        <result column="description" property="description"/>
+        <result column="gmt_create" property="gmt_create"/>
+        <result column="gmt_modified" property="gmt_modified"/>
+        <result column="creator" property="creator"/>
+        <result column="commentcout" property="comment_cout"/>
+        <result column="readercount" property="reader_count"/>
+        <result column="likecount" property="like_count"/>
+        <result column="tag" property="tags"/>
+        <association property="user" javaType="com.nuc.wcj.community.model.User">
+            <id column="id" property="id"/>
+            <result column="account_id" property="account_id"/>
+            <result column="NAME" property="name"/>
+            <result column="TOKEN" property="token"/>
+            <result column="GMT_CREAT" property="gmt_creat"/>
+            <result column="gmt_modified" property="gmt_modified"/>
+            <result column="avtar_url" property="avtar_url"/>
+        </association>
+    </resultMap>
+    <select id="findall" resultMap="questiondto">
+        select quesetion.*,user.* from
+        quesetion,user where quesetion.creator = user.id
+    </select>
+</mapper>
