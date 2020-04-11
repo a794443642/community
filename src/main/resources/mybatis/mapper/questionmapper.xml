@@ -26,6 +26,6 @@
     </resultMap>
     <select id="findall" resultMap="questiondto">
         select quesetion.*,user.* from
-        quesetion,user where quesetion.creator = user.id
+        quesetion left join user on quesetion.creator = user.id
     </select>
 </mapper>

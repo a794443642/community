@@ -1,11 +1,14 @@
 package com.nuc.wcj.community.controller;
 
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import com.nuc.wcj.community.dto.QuestionDto;
 import com.nuc.wcj.community.mapper.Question1Mapper;
 import com.nuc.wcj.community.mapper.QuestionMapper;
 import com.nuc.wcj.community.mapper.UserMapper;
 import com.nuc.wcj.community.model.User;
 import com.nuc.wcj.community.provider.GithubProvider;
+import com.nuc.wcj.community.service.QuserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -21,9 +24,11 @@ public class IndexController {
     @Autowired
     UserMapper userMapper;
     @Autowired
-    Question1Mapper question1Mapper;
+    QuserService quserService;
     @GetMapping("/")
-    public String index(HttpServletRequest request,Model model){
+    public String index(HttpServletRequest request,Model model,
+                        @RequestParam(defaultValue = "1") int pageNum,
+                        @RequestParam(defaultValue = "5") int pageSize){
 
         Cookie[] cookies=request.getCookies();
         if (cookies!=null) {
@@ -38,8 +43,8 @@ public class IndexController {
                 }
             }
         }
-        List<QuestionDto> questionDtos = question1Mapper.findall();
-        model.addAttribute("questions",questionDtos);
+        PageInfo pageInfo=quserService.getQueserList(pageNum,pageSize);
+        model.addAttribute("questions",pageInfo);
         return "index";
     }
 }
