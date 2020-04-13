@@ -28,4 +28,8 @@
         select quesetion.*,user.* from
         quesetion left join user on quesetion.creator = user.id
     </select>
+    <select id="findallbycreatorid" resultMap="questiondto">
+        select quesetion.*,user.* from
+            quesetion left join user on quesetion.creator = user.id where account_id=#{account_id}
+    </select>
 </mapper>

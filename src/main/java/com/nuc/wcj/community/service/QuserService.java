@@ -20,4 +20,10 @@ public class QuserService {
         PageInfo<QuestionDto> pageInfo=new PageInfo<QuestionDto>(questionDtos);
         return pageInfo;
     }
+    public PageInfo getQueserList(String account_id,int pageNum,int pageSize){
+        PageHelper.startPage(pageNum,pageSize);
+        List<QuestionDto> questionDtos = questionMapper.findallbycreatorid(account_id);
+        PageInfo<QuestionDto> pageInfo=new PageInfo<QuestionDto>(questionDtos);
+        return pageInfo;
+    }
 }

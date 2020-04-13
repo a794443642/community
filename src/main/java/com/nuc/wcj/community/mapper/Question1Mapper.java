@@ -10,4 +10,5 @@ import java.util.List;
 @Repository
 public interface Question1Mapper {
     List<QuestionDto> findall();
+    List<QuestionDto> findallbycreatorid(String account_id);
 }
