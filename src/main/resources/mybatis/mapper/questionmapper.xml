@@ -10,10 +10,10 @@
         <result column="gmt_create" property="gmt_create"/>
         <result column="gmt_modified" property="gmt_modified"/>
         <result column="creator" property="creator"/>
-        <result column="commentcout" property="comment_cout"/>
-        <result column="readercount" property="reader_count"/>
-        <result column="likecount" property="like_count"/>
-        <result column="tag" property="tags"/>
+        <result column="comment_cout" property="commentCout"/>
+        <result column="reader_count" property="readerCount"/>
+        <result column="like_count" property="likeCount"/>
+        <result column="tags" property="tag"/>
         <association property="user" javaType="com.nuc.wcj.community.model.User">
             <id column="id" property="id"/>
             <result column="account_id" property="account_id"/>
@@ -33,7 +33,7 @@
             quesetion left join user on quesetion.creator = user.id where account_id=#{account_id}
     </select>
     <select id="findById" resultMap="questiondto">
-        select quesetion.*,user.* from quesetion left join user on
-            quesetion.creator = user.id where quesetion.id=#{id}
+        select quesetion.*,user.* from
+            quesetion left join user on quesetion.creator = user.id where quesetion.id=#{id}
     </select>
 </mapper>

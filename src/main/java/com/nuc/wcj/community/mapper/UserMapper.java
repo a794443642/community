@@ -5,6 +5,7 @@ import com.nuc.wcj.community.model.User;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.Update;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Repository;
 
@@ -16,5 +17,8 @@ public interface UserMapper {
     void insert(User user);
     @Select("SELECT * from user where TOKEN=#{token}")
     User findByToken(String token);
-    
+    @Select("select * from user where account_id=#{account_id};")
+    User findbyAccounId(String account_id);
+    @Update("update user set NAME=#{name},TOKEN=#{token},GMT_MODIFIED=#{gmt_modified},avtar_url=#{avtar_url} where id=#{id}")
+    void update(User user);
 }
