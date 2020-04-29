@@ -23,20 +23,6 @@ public class IndexController {
     public String index(HttpServletRequest request,Model model,
                         @RequestParam(defaultValue = "1") int pageNum,
                         @RequestParam(defaultValue = "5") int pageSize){
-
-        Cookie[] cookies=request.getCookies();
-        if (cookies!=null) {
-            for (Cookie cookie : cookies) {
-                if ("token".equals(cookie.getName())) {
-                    String token = cookie.getValue();
-                    User user = userMapper.findByToken(token);
-                    if (user != null) {
-                        request.getSession().setAttribute("user", user);
-                    }
-                    break;
-                }
-            }
-        }
         PageInfo pageInfo=quserService.getQueserList(pageNum,pageSize);
         model.addAttribute("questions",pageInfo);
         return "index";

@@ -26,4 +26,8 @@ public class QuserService {
         PageInfo<QuestionDto> pageInfo=new PageInfo<QuestionDto>(questionDtos);
         return pageInfo;
     }
+
+    public QuestionDto findById(Integer id) {
+        return questionMapper.findById(id);
+    }
 }
