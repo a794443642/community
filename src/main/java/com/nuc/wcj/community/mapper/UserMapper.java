@@ -20,5 +20,5 @@ public interface UserMapper {
     @Select("select * from user where account_id=#{account_id};")
     User findbyAccounId(String account_id);
     @Update("update user set NAME=#{name},TOKEN=#{token},GMT_MODIFIED=#{gmt_modified},avtar_url=#{avtar_url} where id=#{id}")
-    void update(User user);
+    Integer update(User user);
 }

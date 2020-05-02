@@ -11,5 +11,5 @@ import java.util.List;
 public interface Question1Mapper {
     List<QuestionDto> findall();
     List<QuestionDto> findallbycreatorid(String account_id);
-    QuestionDto findById(Integer id);
+    QuestionDto findById(long id);
 }

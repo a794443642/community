@@ -1,5 +1,6 @@
 server:
   port: 8080
+
 github:
   client:
     id: 1be069a756230d6fc8ab
@@ -18,9 +19,10 @@ spring:
   #热部署生效
   devtools:
     restart:
-      enabled: true
+      enabled: false
       #设置重启的目录
       additional-paths: src/main/java,resources/**
+
 mybatis:
   mapper-locations: classpath:mybatis/mapper/*.xml
   config-location: classpath:mybatis/mybatis-config.xml

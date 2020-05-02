@@ -13,8 +13,11 @@ public class QuestionController {
     @Autowired
     QuserService quserService;
     @GetMapping("/question/{id}")
-    public String question(@PathVariable(name = "id")Integer id, Model model){
+    public String question(@PathVariable(name = "id")Integer id, Model model) throws Exception {
         QuestionDto questionDto=quserService.findById(id);
+//        if (questionDto==null){
+//            throw new Exception();
+//        }
         model.addAttribute("questioninfo",questionDto);
         return "question";
     }

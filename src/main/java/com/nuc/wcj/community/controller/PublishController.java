@@ -24,6 +24,7 @@ public class PublishController {
         if (id!=null){
             QuestionDto question = quserService.findById(id);
             String title = question.getTitle();
+            model.addAttribute("id",question.getId());
             model.addAttribute("title", title);
             String description = question.getDescription();
             model.addAttribute("description", description);
@@ -59,9 +60,7 @@ public class PublishController {
             return "publish";
         }
         quesetion.setCreator(user.getId());
-        quesetion.setGmtcreate(System.currentTimeMillis());
-        quesetion.setGmtmodified(quesetion.getGmtcreate());
-        quserService.insert(quesetion);
+        quserService.creatOrUpdate(quesetion);
         return "redirect:/";
     }
 

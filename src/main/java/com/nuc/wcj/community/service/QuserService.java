@@ -3,6 +3,9 @@ package com.nuc.wcj.community.service;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.nuc.wcj.community.dto.QuestionDto;
+import com.nuc.wcj.community.exception.CustomizeErrorCode;
+import com.nuc.wcj.community.exception.CustomizeException;
+import com.nuc.wcj.community.exception.ICUstomizeErrorCode;
 import com.nuc.wcj.community.mapper.Question1Mapper;
 
 import com.nuc.wcj.community.mapper.QuestionMapper;
@@ -31,10 +34,32 @@ public class QuserService {
         return pageInfo;
     }
 
-    public QuestionDto findById(Integer id) {
-        return question1Mapper.findById(id);
+    public QuestionDto findById(long id) {
+        QuestionDto byId = question1Mapper.findById(id);
+        if (byId==null){
+            throw new CustomizeException(CustomizeErrorCode.QUESTION_NOT_FOUND);
+        }
+        return byId;
     }
     public void insert(Quesetion quesetionq){
         questionMapper.create(quesetionq);
+    }
+
+    public void creatOrUpdate(Quesetion quesetion) {
+        Quesetion dbquesetion=questionMapper.findbyid(quesetion.getId());
+        if (dbquesetion!=null){
+            dbquesetion.setTitle(quesetion.getTitle());
+            dbquesetion.setDescription(quesetion.getDescription());
+            dbquesetion.setTag(dbquesetion.getTag());
+            dbquesetion.setGmtmodified(System.currentTimeMillis());
+            Integer update = questionMapper.update(dbquesetion);
+            if (update!=1){
+                throw new CustomizeException(CustomizeErrorCode.QUESTION_NOT_FOUND);
+            }
+        }else{
+            quesetion.setGmtcreate(System.currentTimeMillis());
+            quesetion.setGmtmodified(quesetion.getGmtcreate());
+            questionMapper.create(quesetion);
+        }
     }
 }
