@@ -8,10 +8,10 @@ public class Quesetion {
   private long gmt_create;
   private long gmt_modified;
   private long creator;
-  private long commentCout;
-  private long readerCount;
-  private long likeCount;
-  private String tag;
+  private long comment_cout;
+  private long reader_count;
+  private long like_count;
+  private String tags;
 
 
   public long getId() {
@@ -69,38 +69,38 @@ public class Quesetion {
 
 
   public long getCommentCout() {
-    return commentCout;
+    return comment_cout;
   }
 
   public void setCommentCout(long commentCout) {
-    this.commentCout = commentCout;
+    this.comment_cout = commentCout;
   }
 
 
   public long getReaderCount() {
-    return readerCount;
+    return reader_count;
   }
 
   public void setReaderCount(long readerCount) {
-    this.readerCount = readerCount;
+    this.reader_count = readerCount;
   }
 
 
   public long getLikeCount() {
-    return likeCount;
+    return like_count;
   }
 
   public void setLikeCount(long likeCount) {
-    this.likeCount = likeCount;
+    this.like_count = likeCount;
   }
 
 
   public String getTag() {
-    return tag;
+    return tags;
   }
 
   public void setTag(String tag) {
-       this.tag = tag;
+       this.tags = tag;
   }
 
 }

@@ -62,4 +62,14 @@ public class QuserService {
             questionMapper.create(quesetion);
         }
     }
+
+    public void incView(Integer id) {
+        Quesetion updatequesetion=new Quesetion();
+        updatequesetion.setId(id);
+        updatequesetion.setReaderCount(1);
+        Integer updateRow = questionMapper.updateView(updatequesetion);
+        if (updateRow!=1) {
+            throw new CustomizeException(CustomizeErrorCode.QUESTION_NOT_FOUND);
+        }
+    }
 }

@@ -14,10 +14,8 @@ public class QuestionController {
     QuserService quserService;
     @GetMapping("/question/{id}")
     public String question(@PathVariable(name = "id")Integer id, Model model) throws Exception {
+        quserService.incView(id);
         QuestionDto questionDto=quserService.findById(id);
-//        if (questionDto==null){
-//            throw new Exception();
-//        }
         model.addAttribute("questioninfo",questionDto);
         return "question";
     }

@@ -18,7 +18,7 @@
             <span class="text-desc">
                 • 作者 <span th:text="${questioninfo.getUser().getName()}"></span>
                 • 发布时间<span th:text="${#dates.format(questioninfo.getGmt_modified(),'dd MMMM yyyy')}"></span>
-                • 阅读数<span th:text="${questioninfo.getCommentCout()}"></span>
+                • 阅读数<span th:text="${questioninfo.getReaderCount()}"></span>
             </span>
             <hr>
             <div th:text="${questioninfo.getDescription()}"></div>
